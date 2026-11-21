@@ -29,6 +29,8 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: '.'
+      - name: Laisser l'archive GitHub Pages devenir disponible
+        run: sleep 15
       - name: Publier le site
         id: deployment
         uses: actions/deploy-pages@v4
