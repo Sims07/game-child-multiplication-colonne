@@ -7,69 +7,46 @@
 <title>Académie des multiplications — jeu CE2</title>
 <style>
 :root{font-family:ui-rounded,"Avenir Next",system-ui,-apple-system,sans-serif;color:#25334b;background:#101d38;font-synthesis:none}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#324670 0,transparent 45%),linear-gradient(#142440,#101a31);min-height:100vh}button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible{outline:3px solid #f4b84c;outline-offset:3px}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#324670 0,transparent 45%),linear-gradient(#142440,#101a31);min-height:100vh}button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible{outline:3px solid #f4b84c;outline-offset:3px}
 #app{max-width:720px;margin:auto;padding:16px 12px 36px}.heading{color:#fff;text-align:center;padding:9px 0 17px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;color:#eec780;text-transform:uppercase}.heading h1{margin:8px 0 5px;font-size:clamp(25px,5.4vw,36px);line-height:1.15}.heading p{margin:0;color:#c9d5e8;font-size:14px}
 .panel{background:#fffcf5;border:2px solid #dfca9d;border-radius:22px;padding:17px;box-shadow:0 14px 38px #020b20a0}.topbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.star{background:#fff0c7;border-radius:100px;padding:8px 12px;font-weight:900;color:#835119}.tag{color:#56657d;font-weight:800;font-size:13px}
 .levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:13px 0}.level{border:2px solid #d8dfed;color:#526078;background:#fff;border-radius:12px;min-height:45px;font-size:13px;font-weight:850;padding:6px 3px}.level[aria-pressed="true"]{border-color:#6b5ec7;background:#efebff;color:#4c3d9e}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:14px 0 13px}.step{border-radius:7px;background:#e8eaf1;height:7px}.step.on{background:#8f72c9}.step.past{background:#47a886}
 .lesson{background:#f4f0ff;border:1px solid #dfd4f7;border-radius:14px;padding:12px 14px;min-height:105px}.lesson small{display:block;text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:.06em;color:#7455ad}.lesson h2{font-size:19px;margin:4px 0 4px;color:#2e3153}.lesson p{margin:0;font-size:15px;line-height:1.4;color:#555d72}
-.paper{border:2px solid #e4d7b8;background:repeating-linear-gradient(to bottom,#fffbef 0,#fffbef 31px,#e9e4d3 32px);border-radius:16px;min-height:310px;margin-top:14px;padding:11px 10px;display:flex;align-items:center;justify-content:center}.calc{--w:clamp(41px,11vw,57px);--sign:30px;width:max-content;color:#2a3547;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;font-variant-numeric:tabular-nums}.r{display:grid;grid-template-columns:var(--sign) repeat(4,var(--w));height:47px;align-items:center;justify-items:center}.r.carry{height:24px}.sign{font-size:24px;color:#697488;font-weight:900}.d{position:relative;width:calc(var(--w) - 2px);height:43px;display:grid;place-items:center;border-radius:8px;font-size:33px;font-weight:900}.d.empty{color:#c9c8c0;font-size:20px}.d.current{background:#e9e0ff;border:3px dashed #8060c2;color:#6043ae;animation:pulse 1.8s infinite}.d.current.empty{font-size:25px}.d.filled{background:#e2f8e9;border-color:#29a16c;color:#17774d;animation:none}.d.zero{background:#fff0cc;border:2px solid #ecc578;color:#956210}.d.blue{color:#2565b1}.d.orange{color:#a45b1d}.d.green{color:#18815c}.carry .d{font-size:16px;width:25px;height:22px;color:#a76016;background:#ffefd0}.carry .d.empty{background:none;color:transparent}.carry .d.current{font-size:17px;color:#7945b8;background:#eee5ff}.rule{margin:3px 0;height:3px;background:#526075;border-radius:8px}.rule.bottom{margin-top:7px}
+.helper{margin-top:9px;padding:10px 12px;border:1px solid #d8cff4;border-radius:12px;background:#fff7ff;color:#5c488d;font-weight:800;font-size:14px;line-height:1.35}.helper strong{color:#4c3296}.helper .mini{display:block;font-size:12px;font-weight:700;color:#7b6ca9;margin-top:3px}
+.paper{border:2px solid #e4d7b8;background:repeating-linear-gradient(to bottom,#fffbef 0,#fffbef 31px,#e9e4d3 32px);border-radius:16px;min-height:310px;margin-top:14px;padding:11px 10px;display:flex;align-items:center;justify-content:center}.calc{--w:clamp(41px,11vw,57px);--sign:30px;width:max-content;color:#2a3547;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;font-variant-numeric:tabular-nums}.r{display:grid;grid-template-columns:var(--sign) repeat(4,var(--w));height:47px;align-items:center;justify-items:center}.r.carry{height:24px}.sign{font-size:24px;color:#697488;font-weight:900}.d{position:relative;width:calc(var(--w) - 2px);height:43px;display:grid;place-items:center;border-radius:8px;font-size:33px;font-weight:900}.d.empty{color:#c9c8c0;font-size:20px}.d.current{background:#e9e0ff;border:3px dashed #8060c2;color:#6043ae;animation:pulse 1.8s infinite}.d.current.empty{font-size:25px}.d.filled{background:#e2f8e9;border-color:#29a16c;color:#17774d;animation:none}.d.zero{background:#fff0cc;border:2px solid #ecc578;color:#956210}.d.blue{color:#2565b1}.d.orange{color:#a45b1d}.d.green{color:#18815c}
+.d.focus-top,.d.focus-bottom,.d.focus-add,.carry .d.focus-carry{transform:translateY(-1px)}
+.d.focus-top{background:#efe7ff;box-shadow:0 0 0 3px #7f5fc6 inset;color:#543c9f}
+.d.focus-bottom{background:#fff1cc;box-shadow:0 0 0 3px #d2a142 inset;color:#875600}
+.d.focus-add{background:#e5f6ff;box-shadow:0 0 0 3px #5d94d4 inset;color:#245d9e}
+.carry .d.focus-carry{background:#ffe9c7;box-shadow:0 0 0 2px #cf8f2b inset;color:#8a5511}
+.carry .d{font-size:16px;width:25px;height:22px;color:#a76016;background:#ffefd0}.carry .d.empty{background:none;color:transparent}.carry .d.current{font-size:17px;color:#7945b8;background:#eee5ff}.rule{margin:3px 0;height:3px;background:#526075;border-radius:8px}.rule.bottom{margin-top:7px}
 .feedback{margin:12px auto 0;padding:11px 12px;border:1px solid #cfdaf0;border-radius:12px;background:#ecf3ff;min-height:47px;color:#36557d;font-size:14px;font-weight:750;line-height:1.45}.feedback.ok{border-color:#a4dfbd;background:#e9f8ec;color:#18663f}.feedback.bad{border-color:#f0c49c;background:#fff1df;color:#915016}
+.hint{border-radius:10px;border:1px solid #e9cc80;background:#fff4d4;color:#795819;margin-top:9px;padding:10px;font-size:13px;line-height:1.4}
 .keypad{max-width:330px;margin:14px auto 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.key{height:51px;border-radius:12px;border:2px solid #d3dbea;background:#fff;box-shadow:0 3px 0 #c8d1e0;color:#34476d;font-weight:900;font-size:24px}.key:active{transform:translateY(2px);box-shadow:0 1px 0 #c8d1e0}
-.actions{margin-top:14px;display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.btn{min-height:44px;border-radius:11px;border:1px solid #cfd7e4;background:#fff;color:#4b5c78;padding:10px 13px;font-weight:850;font-size:14px}.btn.primary{background:#6b4faf;color:white;border-color:#6b4faf;box-shadow:0 3px 0 #503b86}.hint{border-radius:10px;border:1px solid #e9cc80;background:#fff4d4;color:#795819;margin-top:9px;padding:10px;font-size:13px;line-height:1.4}.hidden{display:none!important}.done{text-align:center;padding:14px 7px}.done .wand{font-size:48px}.done h2{font-size:24px;margin:7px 0}.done p{line-height:1.5}.done strong{font-size:32px;color:#6545a0}
+.actions{margin-top:14px;display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.btn{min-height:44px;border-radius:11px;border:1px solid #cfd7e4;background:#fff;color:#4b5c78;padding:10px 13px;font-weight:850;font-size:14px}.btn.primary{background:#6b4faf;color:white;border-color:#6b4faf;box-shadow:0 3px 0 #503b86}.hidden{display:none!important}.done{text-align:center;padding:14px 7px}.done .wand{font-size:48px}.done h2{font-size:24px;margin:7px 0}.done p{line-height:1.5}.done strong{font-size:32px;color:#6545a0}
 .note{color:#c9d5e8;text-align:center;font-size:12px;line-height:1.5;margin:14px auto 0;max-width:570px}
-html.in-portal .heading, html.in-portal .note{display:none}
-.control-dock{position:relative}
+html.in-portal .heading, html.in-portal .note{display:none}.control-dock{position:relative}
+@keyframes pulse{50%{box-shadow:0 0 0 5px #ded2f7}}
 @media(max-width:640px){
  #app{padding:8px 6px 22px}
  html.in-portal #app{padding-top:4px}
  body.has-dock #app{padding-bottom:calc(173px + env(safe-area-inset-bottom))}
- .heading{padding:3px 0 9px}
- .eyebrow{font-size:10px}
- .heading h1{font-size:23px;margin:4px 0}
- .heading p{font-size:12px}
- .panel{padding:10px;border-radius:14px}
- .topbar{gap:5px}
- .tag{font-size:12px}
- .star{padding:5px 8px;font-size:12px}
- .levels{margin:8px 0 6px;gap:5px}
- .level{min-height:38px;font-size:11px;padding:3px 2px;border-width:1px}
- .steps{margin:6px 0 7px}
- .step{height:5px}
- .lesson{min-height:0;padding:8px 10px;border-radius:10px}
- .lesson small{font-size:9px}
- .lesson h2{font-size:16px;margin:2px 0}
- .lesson p{font-size:13px;line-height:1.28}
- .paper{min-height:233px;margin-top:9px;padding:6px;border-width:1px;border-radius:12px}
- .calc{--w:clamp(39px,10.5vw,48px);--sign:26px}
- .r{height:37px}
- .r.carry{height:19px}
- .d{height:36px;font-size:29px}
- .d.empty{font-size:18px}
- .d.current.empty{font-size:21px}
- .carry .d{height:19px;font-size:13px}
- .rule{margin:2px 0;height:3px}
- .rule.bottom{margin-top:4px}
+ .heading{padding:3px 0 9px}.eyebrow{font-size:10px}.heading h1{font-size:23px;margin:4px 0}.heading p{font-size:12px}
+ .panel{padding:10px;border-radius:14px}.topbar{gap:5px}.tag{font-size:12px}.star{padding:5px 8px;font-size:12px}
+ .levels{margin:8px 0 6px;gap:5px}.level{min-height:38px;font-size:11px;padding:3px 2px;border-width:1px}
+ .steps{margin:6px 0 7px}.step{height:5px}
+ .lesson{min-height:0;padding:8px 10px;border-radius:10px}.lesson small{font-size:9px}.lesson h2{font-size:16px;margin:2px 0}.lesson p{font-size:13px;line-height:1.28}
+ .helper{margin-top:7px;padding:8px 9px;font-size:12px;border-radius:10px}.helper .mini{font-size:11px}
+ .paper{min-height:233px;margin-top:9px;padding:6px;border-width:1px;border-radius:12px}.calc{--w:clamp(39px,10.5vw,48px);--sign:26px}.r{height:37px}.r.carry{height:19px}.d{height:36px;font-size:29px}.d.empty{font-size:18px}.d.current.empty{font-size:21px}.carry .d{height:19px;font-size:13px}.rule{margin:2px 0;height:3px}.rule.bottom{margin-top:4px}
  .feedback{min-height:0;margin-top:8px;padding:8px 9px;font-size:12px;line-height:1.3}
- .control-dock{
-  position:fixed;z-index:50;left:50%;bottom:0;transform:translateX(-50%);
-  width:min(100%,720px);
-  padding:8px max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));
-  background:#fffcf5;border-top:2px solid #dfca9d;
-  box-shadow:0 -9px 28px #101d3840;
- }
- .keypad{max-width:440px;margin:0 auto;gap:6px}
- .key{height:41px;border-radius:10px;font-size:21px;border-width:1px}
- .actions{max-width:440px;margin:7px auto 0;gap:7px;flex-wrap:nowrap}
- .actions .btn{min-height:34px;padding:5px 8px;font-size:12px;flex:1}
- .actions .btn.primary{flex:2}
+ .control-dock{position:fixed;z-index:50;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,720px);padding:8px max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));background:#fffcf5;border-top:2px solid #dfca9d;box-shadow:0 -9px 28px #101d3840}
+ .keypad{max-width:440px;margin:0 auto;gap:6px}.key{height:41px;border-radius:10px;font-size:21px;border-width:1px}
+ .actions{max-width:440px;margin:7px auto 0;gap:7px;flex-wrap:nowrap}.actions .btn{min-height:34px;padding:5px 8px;font-size:12px;flex:1}.actions .btn.primary{flex:2}
  .hint{margin-top:8px;padding:8px 10px;font-size:12px}
 }
-@media(max-width:350px){
- .level{font-size:10px}
- .calc{--w:39px;--sign:23px}
-}
-@keyframes pulse{50%{box-shadow:0 0 0 5px #ded2f7}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+@media(max-width:350px){.level{font-size:10px}.calc{--w:39px;--sign:23px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
@@ -80,46 +57,83 @@ html.in-portal .heading, html.in-portal .note{display:none}
  <nav class="levels" aria-label="Niveaux"><button type="button" class="level" data-level="0">🌱 Débutante</button><button type="button" class="level" data-level="1">✨ Retenues</button><button type="button" class="level" data-level="2">🏆 Experte</button></nav>
  <div id="steps" class="steps" aria-label="Progression"></div>
  <div class="lesson"><small id="phase"></small><h2 id="title"></h2><p id="question"></p></div>
+ <div id="helper" class="helper" aria-live="polite"></div>
  <div id="hint" class="hint hidden" role="note"></div>
  <div class="paper"><div id="calc" class="calc" aria-label="Multiplication posée en colonnes"></div></div>
  <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
  <div id="playing"><div class="control-dock" aria-label="Clavier de calcul"><div id="keypad" class="keypad" aria-label="Choisir un chiffre"></div><div class="actions"><button type="button" id="hintBtn" class="btn">💡 Indice</button><button type="button" id="nextBtn" class="btn primary hidden">Continuer ➜</button><button type="button" id="restartBtn" class="btn">↻ Recommencer</button></div></div></div>
  <div id="done" class="done hidden"></div>
 </section>
-<p class="note">Le chiffre des dizaines multiplie toute la première ligne : on place donc un zéro pour décaler. Tout se fait dans les colonnes, de droite à gauche.</p>
+<p class="note">Le chiffre du bas multiplie les chiffres du haut de droite à gauche. Ensuite, on décale avec un zéro et on termine par une addition en colonnes.</p>
 </main>
 <script>
 (()=>{'use strict';
-// Le portail affiche déjà le titre du jeu, inutile de le répéter dans l'iframe.
 try{if(window.self!==window.top)document.documentElement.classList.add('in-portal');}catch{document.documentElement.classList.add('in-portal');}
 const bank=[[[12,13],[21,12],[32,11],[13,12]],[[23,14],[27,13],[34,16],[42,17]],[[36,27],[68,47],[47,38],[86,97]]];
-const labels=['Débutante','Retenues','Experte'],place=['milliers','centaines','dizaines','unités'];
+const place=['milliers','centaines','dizaines','unités'];
 const $=id=>document.getElementById(id), digit=(n,col)=>Math.floor(n/10**(3-col))%10;
 let level=0,ix=0,stars=0,A=12,B=13,tasks=[],pos=0,solved=false,wrong=false,hinted=false,done=false;
 try{stars=Number(localStorage.getItem('multiplication-magique-stars')||0)||0;}catch{}
-function add(arr,phase,row,col,val,title,question,detail,hint){arr.push({phase,row,col,val,title,question,detail,hint});}
+function add(arr,phase,row,col,val,title,question,detail,hint,assist){arr.push({phase,row,col,val,title,question,detail,hint,assist});}
+function focus(row,col,kind){return {row,col,kind};}
 function build(a,b){
  const u=a%10,t=Math.floor(a/10),v=b%10,w=Math.floor(b/10),p1=a*v,p2=a*w*10;
- const phases=['1 · La ligne des unités','2 · Le zéro du décalage','3 · La ligne des dizaines','4 · L’addition finale'];
  const arr=[];
  function multiply(ph,row,mult,shift){
-  const x=u*mult,c=Math.floor(x/10),unitsCol=3-shift,tensCol=2-shift;
-  add(arr,ph,row,unitsCol,x%10,'Multiplie les unités',`${mult} × ${u} = ? Écris le chiffre des unités.`,`${mult} × ${u} = ${x}. J’écris ${x%10}.`,`Le résultat est ${x} : prends son chiffre de droite.`);
-  if(c)add(arr,ph,shift?'carry2':'carry1',2,c,'Pose la retenue',`Tu as obtenu ${x}. Place la retenue ${c} au-dessus des dizaines.`,`La retenue ${c} servira pour la prochaine colonne.`,`Quand le résultat dépasse 9, on garde les dizaines en retenue.`);
+  const x=u*mult,c=Math.floor(x/10),unitsCol=3-shift,tensCol=2-shift,bottomCol=shift?2:3,carryRow=shift?'carry2':'carry1';
+  add(arr,ph,row,unitsCol,x%10,'Multiplie les unités',`${mult} × ${u} = ? Écris le chiffre des unités.`,`${mult} × ${u} = ${x}. J’écris ${x%10}.`,`Le résultat est ${x} : prends son chiffre de droite.`,{
+    mode:'multiply',
+    text:`On regarde <strong>${mult}</strong> en bas et <strong>${u}</strong> en haut : <strong>${mult} × ${u}</strong>.`,
+    mini:'Le chiffre du bas multiplie celui du haut.',
+    focus:[focus('a',3,'top'),focus('b',bottomCol,'bottom')]
+  });
+  if(c)add(arr,ph,carryRow,2,c,'Pose la retenue',`Tu as obtenu ${x}. Place la retenue ${c} au-dessus des dizaines.`,`La retenue ${c} servira pour la prochaine colonne.`,`Quand le résultat dépasse 9, on garde les dizaines en retenue.`,{
+    mode:'carry',
+    text:`<strong>${mult} × ${u} = ${x}</strong> : j’écris <strong>${x%10}</strong> et je garde <strong>${c}</strong> en retenue.`,
+    mini:'La retenue se place au-dessus de la colonne suivante.',
+    focus:[focus('a',3,'top'),focus('b',bottomCol,'bottom'),focus(carryRow,2,'carry')]
+  });
   const y=t*mult+c,k=Math.floor(y/10);
-  add(arr,ph,row,tensCol,y%10,'Multiplie les dizaines',`${mult} × ${t}${c?' + '+c+' de retenue':''} = ? Quel chiffre écris-tu ?`,`${mult} × ${t}${c?' + '+c:''} = ${y}. J’écris ${y%10}.`,`Calcule ${y}, puis prends le chiffre de droite.`);
-  if(k)add(arr,ph,row,1-shift,k,'Écris la dernière retenue',`Il reste ${k}. Écris-le dans la colonne à gauche.`,`La dernière retenue est ${k}.`,`C’est le chiffre à gauche de ${y%10} dans ${y}.`);
+  add(arr,ph,row,tensCol,y%10,'Multiplie les dizaines',`${mult} × ${t}${c?' + '+c+' de retenue':''} = ? Quel chiffre écris-tu ?`,`${mult} × ${t}${c?' + '+c:''} = ${y}. J’écris ${y%10}.`,`Calcule ${y}, puis prends le chiffre de droite.`,{
+    mode:'multiply',
+    text:`On garde <strong>${mult}</strong> en bas, puis on regarde <strong>${t}</strong> en haut${c?` avec la retenue <strong>${c}</strong>`:''}.`,
+    mini:`Calcul en cours : ${mult} × ${t}${c?` + ${c}`:''}`,
+    focus:[focus('a',2,'top'),focus('b',bottomCol,'bottom')].concat(c?[focus(carryRow,2,'carry')]:[])
+  });
+  if(k)add(arr,ph,row,1-shift,k,'Écris la dernière retenue',`Il reste ${k}. Écris-le dans la colonne à gauche.`,`La dernière retenue est ${k}.`,`C’est le chiffre à gauche de ${y%10} dans ${y}.`,{
+    mode:'carry',
+    text:`Le calcul donne <strong>${y}</strong> : j’écris <strong>${y%10}</strong> et il reste <strong>${k}</strong> à gauche.`,
+    mini:'On termine la ligne de multiplication.',
+    focus:[focus('a',2,'top'),focus('b',bottomCol,'bottom'),focus(row,1-shift,'carry')]
+  });
  }
  multiply(0,'p1',v,0);
- add(arr,1,'p2',3,0,'Le zéro magique !',`Maintenant, multiplie par ${w} dizaine${w>1?'s':''}. Que faut-il mettre aux unités de la deuxième ligne ?`,'Bravo ! Ce zéro décale tous les chiffres de la deuxième ligne vers la gauche.','Une dizaine, c’est 10 fois plus grand : le zéro est indispensable.');
+ add(arr,1,'p2',3,0,'Le zéro magique !',`Maintenant, multiplie par ${w} dizaine${w>1?'s':''}. Que faut-il mettre aux unités de la deuxième ligne ?`,'Bravo ! Ce zéro décale tous les chiffres de la deuxième ligne vers la gauche.','Une dizaine, c’est 10 fois plus grand : le zéro est indispensable.',{
+   mode:'zero',
+   text:`Le <strong>${w}</strong> vaut <strong>${w} dizaine${w>1?'s':''}</strong> : la deuxième ligne commence par un <strong>0</strong> aux unités.`,
+   mini:'Le zéro décale toute la ligne vers la gauche.',
+   focus:[focus('b',2,'bottom'),focus('p2',3,'carry')]
+ });
  multiply(2,'p2',w,1);
  let carry=0;
  for(let col=3;col>=0;col--){
   const x=digit(p1,col),y=digit(p2,col),z=x+y+carry,c=Math.floor(z/10);
   if(col===0&&z===0)continue;
   const expr=`${x} + ${y}${carry?' + '+carry+' de retenue':''}`;
-  add(arr,3,'sum',col,z%10,'Additionne les colonnes',`${place[col]} : ${expr} = ?`,`Oui ! ${expr} = ${z}. J’écris ${z%10}${c?' et je retiens '+c:''}.`,`Additionne ${expr}, puis écris le chiffre des unités.`);
-  if(c){add(arr,3,'addcarry',col-1,c,'Une retenue pour l’addition',`La somme fait ${z}. Écris la retenue ${c} au-dessus de la colonne suivante.`,`Cette retenue ${c} s’ajoute dans la colonne à gauche.`,`Au-dessus de 9, on garde les dizaines en retenue.`);}
+  const addFocus=[focus('p1',col,'add'),focus('p2',col,'add')];
+  if(carry) addFocus.push(focus('addcarry',col,'carry'));
+  add(arr,3,'sum',col,z%10,'Additionne les colonnes',`${place[col]} : ${expr} = ?`,`Oui ! ${expr} = ${z}. J’écris ${z%10}${c?' et je retiens '+c:''}.`,`Additionne ${expr}, puis écris le chiffre des unités.`,{
+    mode:'add',
+    text:`Ici, on n’utilise plus la multiplication : on additionne la colonne <strong>${x}</strong> et <strong>${y}</strong>${carry?` avec la retenue <strong>${carry}</strong>`:''}.`,
+    mini:`Addition en colonne : ${expr}`,
+    focus:addFocus
+  });
+  if(c){add(arr,3,'addcarry',col-1,c,'Une retenue pour l’addition',`La somme fait ${z}. Écris la retenue ${c} au-dessus de la colonne suivante.`,`Cette retenue ${c} s’ajoute dans la colonne à gauche.`,`Au-dessus de 9, on garde les dizaines en retenue.`,{
+    mode:'carry',
+    text:`La somme vaut <strong>${z}</strong> : j’écris <strong>${z%10}</strong> et je place la retenue <strong>${c}</strong>.`,
+    mini:'Cette retenue servira à la colonne suivante.',
+    focus:[focus('p1',col,'add'),focus('p2',col,'add'),focus('addcarry',col-1,'carry')]
+   });}
   carry=c;
  }
  return arr;
@@ -129,14 +143,32 @@ function vals(row){const out=['','','',''];if(row==='a'||row==='b'){const n=row=
  if(solved&&!done){const t=tasks[pos];if(t.row===row)out[t.col]=String(t.val);}
  if(done){for(const t of tasks)if(t.row===row)out[t.col]=String(t.val);}
  return out;}
-function row(row,sign,style,carry=false){const vs=vals(row),cur=done?null:tasks[pos];return `<div class="r${carry?' carry':''}"><span class="sign">${sign}</span>${vs.map((v,col)=>{const active=cur&&cur.row===row&&cur.col===col;const cls=['d',v===''?'empty':'',style||'',active?'current':'',active&&solved?'filled':'',row==='p2'&&col===3&&v==='0'?'zero':''].join(' ');return `<span class="${cls}"${active?' aria-label="Case active"':''}>${v===''?(active?'?':carry?'':'·'):v}</span>`;}).join('')}</div>`;}
+function row(row,sign,style,carry=false){
+ const vs=vals(row),cur=done?null:tasks[pos];
+ const focusMap=new Map(((cur&&cur.assist&&cur.assist.focus)||[]).map(f=>[`${f.row}-${f.col}`,f.kind]));
+ return `<div class="r${carry?' carry':''}"><span class="sign">${sign}</span>${vs.map((v,col)=>{
+  const active=cur&&cur.row===row&&cur.col===col;
+  const focusKind=focusMap.get(`${row}-${col}`);
+  const cls=['d',v===''?'empty':'',style||'',active?'current':'',active&&solved?'filled':'',row==='p2'&&col===3&&v==='0'?'zero':'',focusKind?`focus-${focusKind}`:''].join(' ');
+  return `<span class="${cls}"${active?' aria-label="Case active"':''}>${v===''?(active?'?':carry?'':'·'):v}</span>`;
+ }).join('')}</div>`;
+}
 function renderCalc(){const ph=done?4:tasks[pos].phase;$('calc').innerHTML=(ph===0?row('carry1','','',true):ph===2?row('carry2','','',true):'')+row('a','')+row('b','×')+'<div class="rule"></div>'+row('p1','','blue')+row('p2','+','orange')+'<div class="rule bottom"></div>'+(ph===3?row('addcarry','','',true):'')+row('sum','','green');}
-function render(){document.body.classList.toggle('has-dock',!done);document.querySelectorAll('[data-level]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.level)===level)));$('exercise').textContent=`Calcul ${ix+1} · ${A} × ${B}`;$('stars').textContent=`⭐ ${stars} étoile${stars>1?'s':''}`;
- const ph=done?4:tasks[pos].phase;$('steps').innerHTML=Array.from({length:4},(_,i)=>`<span class="step ${i<ph?'past':i===ph?'on':''}"></span>`).join('');renderCalc();
- if(done){$('phase').textContent='Mission accomplie';$('title').textContent='Bravo, petit sorcier !';$('question').textContent='Tu as posé les deux lignes et calculé le résultat.';$('feedback').className='feedback ok';$('feedback').textContent='🌟 Une étoile gagnée !';$('playing').classList.add('hidden');$('done').classList.remove('hidden');$('done').innerHTML=`<div class="wand">🎉🪄✨</div><h2>Sortilège réussi !</h2><strong>${A} × ${B} = ${A*B}</strong><p>Prête pour une autre multiplication ?</p><button type="button" class="btn primary" id="another">Nouvelle mission ➜</button>`;$('another').addEventListener('click',()=>{ix++;start();});return;}
- $('playing').classList.remove('hidden');$('done').classList.add('hidden');const t=tasks[pos];$('phase').textContent=t.phase===0?'1 · Multiplier par les unités':t.phase===1?'2 · Décaler avec zéro':t.phase===2?'3 · Multiplier par les dizaines':'4 · Additionner';$('title').textContent=t.title;$('question').textContent=t.question;
+function render(){
+ document.body.classList.toggle('has-dock',!done);
+ document.querySelectorAll('[data-level]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.level)===level)));
+ $('exercise').textContent=`Calcul ${ix+1} · ${A} × ${B}`;$('stars').textContent=`⭐ ${stars} étoile${stars>1?'s':''}`;
+ const ph=done?4:tasks[pos].phase;$('steps').innerHTML=Array.from({length:4},(_,i)=>`<span class="step ${i<ph?'past':i===ph?'on':''}"></span>`).join('');
+ renderCalc();
+ if(done){$('phase').textContent='Mission accomplie';$('title').textContent='Bravo, petit sorcier !';$('question').textContent='Tu as posé les deux lignes et calculé le résultat.';$('helper').innerHTML='🌟 Tu as réussi toute la multiplication, ligne par ligne !';$('feedback').className='feedback ok';$('feedback').textContent='🌟 Une étoile gagnée !';$('playing').classList.add('hidden');$('done').classList.remove('hidden');$('done').innerHTML=`<div class="wand">🎉🪄✨</div><h2>Sortilège réussi !</h2><strong>${A} × ${B} = ${A*B}</strong><p>Prête pour une autre multiplication ?</p><button type="button" class="btn primary" id="another">Nouvelle mission ➜</button>`;$('another').addEventListener('click',()=>{ix++;start();});return;}
+ $('playing').classList.remove('hidden');$('done').classList.add('hidden');
+ const t=tasks[pos];
+ $('phase').textContent=t.phase===0?'1 · Multiplier par les unités':t.phase===1?'2 · Décaler avec zéro':t.phase===2?'3 · Multiplier par les dizaines':'4 · Additionner';
+ $('title').textContent=t.title;$('question').textContent=t.question;
+ $('helper').innerHTML=`👀 ${t.assist.text}${t.assist.mini?`<span class="mini">${t.assist.mini}</span>`:''}`;
  $('keypad').classList.toggle('hidden',solved);$('nextBtn').classList.toggle('hidden',!solved);$('hintBtn').classList.toggle('hidden',solved);$('hint').classList.toggle('hidden',!hinted||solved);$('hint').textContent=t.hint;
- $('feedback').className='feedback'+(solved?' ok':wrong?' bad':'');$('feedback').textContent=solved?'✅ '+t.detail:wrong?'🔍 Ce n’est pas ce chiffre. Essaie encore ou demande un indice.':`🪄 Étape ${pos+1}/${tasks.length} : touche le chiffre à placer dans la case « ? ».`;
+ $('feedback').className='feedback'+(solved?' ok':wrong?' bad':'');
+ $('feedback').textContent=solved?'✅ '+t.detail:wrong?'🔍 Ce n’est pas ce chiffre. Regarde bien les cases mises en lumière.':'🪄 Étape '+(pos+1)+'/'+tasks.length+' : regarde les chiffres éclairés, puis touche le chiffre à placer.';
 }
 function start(){[A,B]=bank[level][ix%bank[level].length];tasks=build(A,B);pos=0;solved=false;wrong=false;hinted=false;done=false;render();}
 function choose(v){if(done||solved)return;if(v===tasks[pos].val){solved=true;wrong=false;}else wrong=true;render();}
