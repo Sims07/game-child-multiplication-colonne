@@ -17,7 +17,59 @@
 .feedback{margin:12px auto 0;padding:11px 12px;border:1px solid #cfdaf0;border-radius:12px;background:#ecf3ff;min-height:47px;color:#36557d;font-size:14px;font-weight:750;line-height:1.45}.feedback.ok{border-color:#a4dfbd;background:#e9f8ec;color:#18663f}.feedback.bad{border-color:#f0c49c;background:#fff1df;color:#915016}
 .keypad{max-width:330px;margin:14px auto 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.key{height:51px;border-radius:12px;border:2px solid #d3dbea;background:#fff;box-shadow:0 3px 0 #c8d1e0;color:#34476d;font-weight:900;font-size:24px}.key:active{transform:translateY(2px);box-shadow:0 1px 0 #c8d1e0}
 .actions{margin-top:14px;display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.btn{min-height:44px;border-radius:11px;border:1px solid #cfd7e4;background:#fff;color:#4b5c78;padding:10px 13px;font-weight:850;font-size:14px}.btn.primary{background:#6b4faf;color:white;border-color:#6b4faf;box-shadow:0 3px 0 #503b86}.hint{border-radius:10px;border:1px solid #e9cc80;background:#fff4d4;color:#795819;margin-top:9px;padding:10px;font-size:13px;line-height:1.4}.hidden{display:none!important}.done{text-align:center;padding:14px 7px}.done .wand{font-size:48px}.done h2{font-size:24px;margin:7px 0}.done p{line-height:1.5}.done strong{font-size:32px;color:#6545a0}
-.note{color:#c9d5e8;text-align:center;font-size:12px;line-height:1.5;margin:14px auto 0;max-width:570px}@keyframes pulse{50%{box-shadow:0 0 0 5px #ded2f7}}@media(max-width:390px){#app{padding:8px 6px 25px}.panel{padding:12px;border-radius:17px}.paper{min-height:300px}.calc{--w:41px;--sign:27px}.r{height:43px}.d{font-size:30px;height:41px}.level{font-size:12px}.lesson h2{font-size:17px}.lesson p{font-size:14px}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+.note{color:#c9d5e8;text-align:center;font-size:12px;line-height:1.5;margin:14px auto 0;max-width:570px}
+html.in-portal .heading, html.in-portal .note{display:none}
+.control-dock{position:relative}
+@media(max-width:640px){
+ #app{padding:8px 6px 22px}
+ html.in-portal #app{padding-top:4px}
+ body.has-dock #app{padding-bottom:calc(173px + env(safe-area-inset-bottom))}
+ .heading{padding:3px 0 9px}
+ .eyebrow{font-size:10px}
+ .heading h1{font-size:23px;margin:4px 0}
+ .heading p{font-size:12px}
+ .panel{padding:10px;border-radius:14px}
+ .topbar{gap:5px}
+ .tag{font-size:12px}
+ .star{padding:5px 8px;font-size:12px}
+ .levels{margin:8px 0 6px;gap:5px}
+ .level{min-height:38px;font-size:11px;padding:3px 2px;border-width:1px}
+ .steps{margin:6px 0 7px}
+ .step{height:5px}
+ .lesson{min-height:0;padding:8px 10px;border-radius:10px}
+ .lesson small{font-size:9px}
+ .lesson h2{font-size:16px;margin:2px 0}
+ .lesson p{font-size:13px;line-height:1.28}
+ .paper{min-height:233px;margin-top:9px;padding:6px;border-width:1px;border-radius:12px}
+ .calc{--w:clamp(39px,10.5vw,48px);--sign:26px}
+ .r{height:37px}
+ .r.carry{height:19px}
+ .d{height:36px;font-size:29px}
+ .d.empty{font-size:18px}
+ .d.current.empty{font-size:21px}
+ .carry .d{height:19px;font-size:13px}
+ .rule{margin:2px 0;height:3px}
+ .rule.bottom{margin-top:4px}
+ .feedback{min-height:0;margin-top:8px;padding:8px 9px;font-size:12px;line-height:1.3}
+ .control-dock{
+  position:fixed;z-index:50;left:50%;bottom:0;transform:translateX(-50%);
+  width:min(100%,720px);
+  padding:8px max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));
+  background:#fffcf5;border-top:2px solid #dfca9d;
+  box-shadow:0 -9px 28px #101d3840;
+ }
+ .keypad{max-width:440px;margin:0 auto;gap:6px}
+ .key{height:41px;border-radius:10px;font-size:21px;border-width:1px}
+ .actions{max-width:440px;margin:7px auto 0;gap:7px;flex-wrap:nowrap}
+ .actions .btn{min-height:34px;padding:5px 8px;font-size:12px;flex:1}
+ .actions .btn.primary{flex:2}
+ .hint{margin-top:8px;padding:8px 10px;font-size:12px}
+}
+@media(max-width:350px){
+ .level{font-size:10px}
+ .calc{--w:39px;--sign:23px}
+}
+@keyframes pulse{50%{box-shadow:0 0 0 5px #ded2f7}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
@@ -28,15 +80,18 @@
  <nav class="levels" aria-label="Niveaux"><button type="button" class="level" data-level="0">🌱 Débutante</button><button type="button" class="level" data-level="1">✨ Retenues</button><button type="button" class="level" data-level="2">🏆 Experte</button></nav>
  <div id="steps" class="steps" aria-label="Progression"></div>
  <div class="lesson"><small id="phase"></small><h2 id="title"></h2><p id="question"></p></div>
+ <div id="hint" class="hint hidden" role="note"></div>
  <div class="paper"><div id="calc" class="calc" aria-label="Multiplication posée en colonnes"></div></div>
  <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
- <div id="playing"><div id="keypad" class="keypad" aria-label="Choisir un chiffre"></div><div class="actions"><button type="button" id="hintBtn" class="btn">💡 Indice</button><button type="button" id="nextBtn" class="btn primary hidden">Continuer ➜</button><button type="button" id="restartBtn" class="btn">↻ Recommencer</button></div><div id="hint" class="hint hidden"></div></div>
+ <div id="playing"><div class="control-dock" aria-label="Clavier de calcul"><div id="keypad" class="keypad" aria-label="Choisir un chiffre"></div><div class="actions"><button type="button" id="hintBtn" class="btn">💡 Indice</button><button type="button" id="nextBtn" class="btn primary hidden">Continuer ➜</button><button type="button" id="restartBtn" class="btn">↻ Recommencer</button></div></div></div>
  <div id="done" class="done hidden"></div>
 </section>
 <p class="note">Le chiffre des dizaines multiplie toute la première ligne : on place donc un zéro pour décaler. Tout se fait dans les colonnes, de droite à gauche.</p>
 </main>
 <script>
 (()=>{'use strict';
+// Le portail affiche déjà le titre du jeu, inutile de le répéter dans l'iframe.
+try{if(window.self!==window.top)document.documentElement.classList.add('in-portal');}catch{document.documentElement.classList.add('in-portal');}
 const bank=[[[12,13],[21,12],[32,11],[13,12]],[[23,14],[27,13],[34,16],[42,17]],[[36,27],[68,47],[47,38],[86,97]]];
 const labels=['Débutante','Retenues','Experte'],place=['milliers','centaines','dizaines','unités'];
 const $=id=>document.getElementById(id), digit=(n,col)=>Math.floor(n/10**(3-col))%10;
@@ -76,7 +131,7 @@ function vals(row){const out=['','','',''];if(row==='a'||row==='b'){const n=row=
  return out;}
 function row(row,sign,style,carry=false){const vs=vals(row),cur=done?null:tasks[pos];return `<div class="r${carry?' carry':''}"><span class="sign">${sign}</span>${vs.map((v,col)=>{const active=cur&&cur.row===row&&cur.col===col;const cls=['d',v===''?'empty':'',style||'',active?'current':'',active&&solved?'filled':'',row==='p2'&&col===3&&v==='0'?'zero':''].join(' ');return `<span class="${cls}"${active?' aria-label="Case active"':''}>${v===''?(active?'?':carry?'':'·'):v}</span>`;}).join('')}</div>`;}
 function renderCalc(){const ph=done?4:tasks[pos].phase;$('calc').innerHTML=(ph===0?row('carry1','','',true):ph===2?row('carry2','','',true):'')+row('a','')+row('b','×')+'<div class="rule"></div>'+row('p1','','blue')+row('p2','+','orange')+'<div class="rule bottom"></div>'+(ph===3?row('addcarry','','',true):'')+row('sum','','green');}
-function render(){document.querySelectorAll('[data-level]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.level)===level)));$('exercise').textContent=`Calcul ${ix+1} · ${A} × ${B}`;$('stars').textContent=`⭐ ${stars} étoile${stars>1?'s':''}`;
+function render(){document.body.classList.toggle('has-dock',!done);document.querySelectorAll('[data-level]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.level)===level)));$('exercise').textContent=`Calcul ${ix+1} · ${A} × ${B}`;$('stars').textContent=`⭐ ${stars} étoile${stars>1?'s':''}`;
  const ph=done?4:tasks[pos].phase;$('steps').innerHTML=Array.from({length:4},(_,i)=>`<span class="step ${i<ph?'past':i===ph?'on':''}"></span>`).join('');renderCalc();
  if(done){$('phase').textContent='Mission accomplie';$('title').textContent='Bravo, petit sorcier !';$('question').textContent='Tu as posé les deux lignes et calculé le résultat.';$('feedback').className='feedback ok';$('feedback').textContent='🌟 Une étoile gagnée !';$('playing').classList.add('hidden');$('done').classList.remove('hidden');$('done').innerHTML=`<div class="wand">🎉🪄✨</div><h2>Sortilège réussi !</h2><strong>${A} × ${B} = ${A*B}</strong><p>Prête pour une autre multiplication ?</p><button type="button" class="btn primary" id="another">Nouvelle mission ➜</button>`;$('another').addEventListener('click',()=>{ix++;start();});return;}
  $('playing').classList.remove('hidden');$('done').classList.add('hidden');const t=tasks[pos];$('phase').textContent=t.phase===0?'1 · Multiplier par les unités':t.phase===1?'2 · Décaler avec zéro':t.phase===2?'3 · Multiplier par les dizaines':'4 · Additionner';$('title').textContent=t.title;$('question').textContent=t.question;
@@ -86,7 +141,7 @@ function render(){document.querySelectorAll('[data-level]').forEach(b=>b.setAttr
 function start(){[A,B]=bank[level][ix%bank[level].length];tasks=build(A,B);pos=0;solved=false;wrong=false;hinted=false;done=false;render();}
 function choose(v){if(done||solved)return;if(v===tasks[pos].val){solved=true;wrong=false;}else wrong=true;render();}
 function next(){if(!solved||done)return;if(pos===tasks.length-1){done=true;stars++;try{localStorage.setItem('multiplication-magique-stars',String(stars));}catch{}}else{pos++;solved=false;wrong=false;hinted=false;}render();}
-for(let n=0;n<10;n++){const b=document.createElement('button');b.type='button';b.className='key';b.textContent=n;b.addEventListener('click',()=>choose(n));$('keypad').appendChild(b);}
+for(const n of [1,2,3,4,5,6,7,8,9,0]){const b=document.createElement('button');b.type='button';b.className='key';b.textContent=n;b.setAttribute('aria-label','Chiffre '+n);b.addEventListener('click',()=>choose(n));$('keypad').appendChild(b);}
 $('nextBtn').addEventListener('click',next);$('hintBtn').addEventListener('click',()=>{hinted=!hinted;render();});$('restartBtn').addEventListener('click',start);
 document.querySelectorAll('[data-level]').forEach(b=>b.addEventListener('click',()=>{level=Number(b.dataset.level);ix=0;start();}));
 document.addEventListener('keydown',e=>{if(/^[0-9]$/.test(e.key))choose(Number(e.key));else if(e.key==='Enter'&&solved)next();});
